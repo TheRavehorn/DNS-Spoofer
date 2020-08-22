@@ -32,7 +32,10 @@ class Queue:
     @staticmethod
     def apache_start():
         print("Starting apache2 service...")
-        subprocess.call("service apache2 start", shell=True)
+        apache = subprocess.check_output("service apache2 start", shell=True)
+        if "not found" in apache:
+            subprocess.call("apt-get install apache2", shell=True)
+            subprocess.call("service apache2 start", shell=True)
         print("Completed.")
 
     def process_packet(self, packet):
