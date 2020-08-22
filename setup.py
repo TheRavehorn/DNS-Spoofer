@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 import subprocess
+import time
 
 try:
     import netfilterqueue
     import scapy
 except ModuleNotFoundError:
+    print("Installing missing dependencies...")
+    time.sleep(3)
     subprocess.call("apt-get update", shell=True)
     subprocess.call("apt-get install python3-pip git tcpdump libnfnetlink-dev libnetfilter-queue-dev -y", shell=True)
     subprocess.call("pip3 install scapy --quiet", shell=True)
