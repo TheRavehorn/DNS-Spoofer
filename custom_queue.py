@@ -36,7 +36,7 @@ class Queue:
             apache = str(subprocess.check_output(["service", "apache2", "start"]))
         except subprocess.CalledProcessError:
             print("Installing and starting apache2 service...")
-            subprocess.call("apt-get install apache2", shell=True)
+            subprocess.call("apt-get install apache2 -y", shell=True)
             subprocess.call("service apache2 start", shell=True)
         print("Completed.")
 
